@@ -1,13 +1,14 @@
-import { Client } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
+import { Client } from 'discord.js';
+import { FILE_EXTENSION } from '../lib/constants';
 import { BotEvent } from '../types';
 
 module.exports = (client: Client) => {
   let eventDir = join(__dirname, '../events');
 
   readdirSync(eventDir).map(file => {
-    if (!file.endsWith(".js")) return;
+    if (!file.endsWith(FILE_EXTENSION)) return;
     const event: BotEvent = require(`${eventDir}/${file}`).default;
 
     event.once 

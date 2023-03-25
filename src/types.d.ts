@@ -6,6 +6,8 @@ declare global {
       DISCORD_TOKEN: string;
       BOT_CLIENT_ID: string;
       DEV_SERVER_ID: string;
+      NODE_ENV: string;
+      MONGO_URL: string;
     };
   };
 };

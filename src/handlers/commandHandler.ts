@@ -1,15 +1,15 @@
-import { Client } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
-import { REST, Routes } from 'discord.js';
+import { Client, REST, Routes } from 'discord.js';
 import { SlashCommand } from '../types';
+import { FILE_EXTENSION } from '../lib/constants';
 
 module.exports = async (client: Client) => {
   const slashCommandDir = join(__dirname, '../commands');
   const body: any = [];
 
   readdirSync(slashCommandDir).map(file => {
-    if (!file.endsWith(".js")) return;
+    if (!file.endsWith(FILE_EXTENSION)) return;
     const command: SlashCommand = require(`${slashCommandDir}/${file}`).command;
 
     client.slashCommands.set(command.data.name, command);
